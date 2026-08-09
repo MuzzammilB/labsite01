@@ -14,7 +14,7 @@ hide: false
      {% endif %}>
 
   <div class="member-photo-container">
-    <img src="{{ member.image }}" alt="{{ member.name }}">
+    <img src="{{ member.image | relative_url }}" alt="{{ member.name }}">
   </div>
 
   <div class="member-info">
