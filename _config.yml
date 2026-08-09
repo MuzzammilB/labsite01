@@ -1,5 +1,5 @@
 # SITE CONFIGURATION
-baseurl: ""
+baseurl: "/labsite01"
 url: "https://muzzammilb.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
