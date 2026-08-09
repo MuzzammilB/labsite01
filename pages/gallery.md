@@ -5,7 +5,7 @@ subtitle: From the pexels folder
 permalink: /gallery/
 gallery_path: "assets/img/pexels"
 excluded: true
-position: 3
+position: 5
 tags: [Page]
 ---
 
