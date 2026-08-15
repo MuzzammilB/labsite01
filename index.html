@@ -245,6 +245,13 @@ layout: default
 
       <div class="neu-slide">
         <img
+          src="{{ '/assets/img/header/U2OS_TDP43.jpg' | relative_url }}"
+          alt="NeuTran Laboratory"
+        >
+      </div>
+
+      <div class="neu-slide">
+        <img
           src="{{ '/assets/img/header/20uM-A11NTD-Atto647-Composite.jpg' | relative_url }}"
           alt="NeuTran Laboratory research"
         >
@@ -291,6 +298,10 @@ layout: default
           class="neu-dot"
           onclick="neuShowSlide(2)">
         </span>
+
+        <span
+          class="neu-dot"
+          onclick="neuShowSlide(3)">
 
       </div>
 
@@ -415,7 +426,7 @@ layout: default
 
         neuShowSlide(neuCurrentSlide);
 
-      }, 5000);
+      }, 3000);
 
     })();
 
