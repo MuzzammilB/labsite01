@@ -3,7 +3,7 @@ baseurl: "/labsite01"
 url: "https://muzzammilb.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
-title: Senthil Laboratory                                    # site's title
+title: Senthil's Lab                                    # site's title
 description: "Laboratory of Neurodegeneration and Translational Biology"  # used by search engines
 avatar: assets/img/NeuTran_Logo_cropped_nobg.svg                         # Empty for no avatar in navbar
 favicon: assets/img/NeuTran_Logo_cropped_nobg.svg                             # Icon displayed in the tab
@@ -13,7 +13,7 @@ header_text: Neurodegeneration and Translational Biology  # Change Blog header t
 header_feature_image: assets/img/header/hasyn_tem_01.jpg
 header_feature_image_responsive: true
 footer_text: >
-   NeuTran Laboratory © 2026. All rights reserved.
+   Senthil's NeuTran Lab © 2026. All rights reserved.
 
 # Blog
 excerpt: true                                           # Or "truncate" (first 250 characters), "false" to disable
