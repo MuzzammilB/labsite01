@@ -1,8 +1,8 @@
 ---
 layout: page
-title: News
-permalink: /news/
-position: 6
+title: EVENTS
+permalink: /events/
+position: 4
 hide: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: feature
-title: Research
+title: RESEARCH
 feature-images:
   - "/assets/img/header/research2.jpg"
   - "/assets/img/header/U2OS_TDP43.jpg"

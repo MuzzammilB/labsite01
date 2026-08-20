@@ -1,8 +1,8 @@
 ---
 layout: page
-title: People
-permalink: /people/
-position: 3
+title: TEAM
+permalink: /team/
+position: 2
 hide: false
 ---
 

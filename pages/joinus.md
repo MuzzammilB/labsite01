@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Join Us!
+title: JOIN US
 permalink: /join-us/
-position: 4
+position: 6
 hide: false
 ---
 
@@ -21,7 +21,7 @@ We are always looking for motivated colleagues at all stages!  If you have inter
 
 
 ## Contact
-##### Senthil Kumar Thangaraj, Ph.D
+#### Senthil Kumar Thangaraj, Ph.D
 Lab-5, Old building,  
 BRIC-National Centre for Cell Science,  
 University of Pune Campus, Pune University Rd,  

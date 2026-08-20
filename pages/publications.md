@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Publications
+title: PUBLICATIONS
 permalink: /publications/
-position: 2
+position: 3
 hide: false
 --- 
 
