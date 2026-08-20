@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: feature
 title: Research
-feature-img: assets/img/header/research2.jpg
+feature-images:
+  - "/assets/img/header/research2.jpg"
+  - "/assets/img/header/U2OS_TDP43.jpg"
 permalink: /research/
 position: 1
 hide: false

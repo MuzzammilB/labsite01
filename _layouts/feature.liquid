@@ -1,0 +1,334 @@
+---
+layout: default
+---
+
+<article {% if page.feature-img or page.feature-images %}class="feature-image"{% endif %}>
+
+    {% if page.feature-images %}
+
+    <header id="main">
+
+        <!-- =========================
+             FEATURE IMAGE SLIDES
+             ========================= -->
+
+        {% for image in page.feature-images %}
+
+            <div
+                class="feature-slide {% if forloop.first %}active{% endif %}"
+                style="background-image: url('{{ image | relative_url }}');">
+            </div>
+
+        {% endfor %}
+
+
+        <!-- =========================
+             ORIGINAL TITLE STRUCTURE
+             ========================= -->
+
+        <div class="title-padder">
+
+            {% if page.hide_title %}
+
+                <div class="feature-image-padding"></div>
+
+            {% else %}
+
+                <h1
+                    id="{{ page.title | default: "" | cgi_escape }}"
+                    class="title"
+                >
+                    {{ page.title }}
+                </h1>
+
+                {% if page.subtitle %}
+
+                    <h2 class="subtitle">
+                        {{ page.subtitle }}
+                    </h2>
+
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =========================
+             SLIDESHOW DOTS
+             ========================= -->
+
+        {% if page.feature-images.size > 1 %}
+
+            <div class="feature-slide-dots">
+
+                {% for image in page.feature-images %}
+
+                    <span
+                        class="feature-slide-dot {% if forloop.first %}active{% endif %}"
+                        onclick="showFeatureSlide({{ forloop.index0 }})">
+                    </span>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </header>
+
+
+    <style>
+
+        /*
+         * Do NOT change the width, height, margin,
+         * padding, or display properties of #main.
+         *
+         * Type-on-Strap controls those properties.
+         */
+
+        #main {
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        /* Individual slideshow images */
+
+        #main .feature-slide {
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            opacity: 0;
+
+            transition: opacity 1.2s ease-in-out;
+
+            z-index: 0;
+        }
+
+
+        #main .feature-slide.active {
+            opacity: 1;
+        }
+
+
+        /*
+         * Keep the Type-on-Strap title above
+         * the slideshow images.
+         */
+
+        #main .title-padder {
+            position: relative;
+            z-index: 5;
+        }
+
+
+        /* Navigation dots */
+
+        .feature-slide-dots {
+
+            position: absolute;
+
+            bottom: 18px;
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            z-index: 10;
+        }
+
+
+        .feature-slide-dot {
+
+            display: inline-block;
+
+            width: 9px;
+            height: 9px;
+
+            margin: 0 5px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.6);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .feature-slide-dot.active {
+
+            background: white;
+
+            transform: scale(1.25);
+        }
+
+    </style>
+
+
+    <script>
+
+        (function () {
+
+            var slides =
+                document.querySelectorAll(
+                    '#main .feature-slide'
+                );
+
+            var dots =
+                document.querySelectorAll(
+                    '.feature-slide-dot'
+                );
+
+            var currentSlide = 0;
+
+
+            function showFeatureSlide(index) {
+
+                if (!slides.length) {
+                    return;
+                }
+
+
+                for (var i = 0; i < slides.length; i++) {
+
+                    slides[i].classList.remove('active');
+
+                }
+
+
+                for (var i = 0; i < dots.length; i++) {
+
+                    dots[i].classList.remove('active');
+
+                }
+
+
+                slides[index].classList.add('active');
+
+
+                if (dots[index]) {
+
+                    dots[index].classList.add('active');
+
+                }
+
+
+                currentSlide = index;
+
+            }
+
+
+            window.showFeatureSlide = showFeatureSlide;
+
+
+            /*
+             * Automatically change image every 3 seconds.
+             */
+
+            if (slides.length > 1) {
+
+                setInterval(function () {
+
+                    currentSlide =
+                        (currentSlide + 1) % slides.length;
+
+                    showFeatureSlide(currentSlide);
+
+                }, 3000);
+
+            }
+
+        })();
+
+    </script>
+
+
+    {% else %}
+
+        <!-- =========================
+             ORIGINAL TYPE-ON-STRAP CODE
+             ========================= -->
+
+        <header
+            id="main"
+            style="background-image: url('{{ page.feature-img | relative_url }}')"
+        >
+
+            <div class="title-padder">
+
+                {% if page.hide_title %}
+
+                    <div class="feature-image-padding"></div>
+
+                {% else %}
+
+                    <h1
+                        id="{{ page.title | default: "" | cgi_escape }}"
+                        class="title"
+                    >
+                        {{ page.title }}
+                    </h1>
+
+                    {% if page.subtitle %}
+
+                        <h2 class="subtitle">
+                            {{ page.subtitle }}
+                        </h2>
+
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
+
+        </header>
+
+    {% endif %}
+
+
+    <section class="post-content">
+
+        {{ content }}
+
+    </section>
+
+
+    <!-- Category and Tag list -->
+
+    <div class="tag-category-container">
+
+        <!-- Category list -->
+
+        {% capture category_list %}
+            {{ page.categories | join: "|" }}
+        {% endcapture %}
+
+        {% include default/category_list.liquid categories=category_list %}
+
+
+        <!-- Tag list for portfolio -->
+
+        {% capture tag_list %}
+            {{ page.tags | join: "|" }}
+        {% endcapture %}
+
+        {% include default/tags_list.liquid tags=tag_list %}
+
+    </div>
+
+</article>
