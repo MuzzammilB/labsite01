@@ -4,7 +4,7 @@ title: RESEARCH
 heading: Neurodegeneration across biological scales
 feature-images:
   - "/assets/img/header/research2.jpg"
-  - "/assets/img/header/U2OS_TDP43.jpg"
+  - "/assets/img/header/lab_banner.jpeg"
 permalink: /research/
 position: 1
 hide: false
