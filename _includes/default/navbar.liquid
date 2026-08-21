@@ -1,47 +1,354 @@
 <header class="site-header">
 
     <!-- Logo and title -->
-	<div class="branding">
+    <div class="branding">
         {% if site.avatar %}
-		<a href="{{ '/' | relative_url }}">
-			<img alt="logo img" class="avatar" src="{{ site.avatar | relative_url }}" loading="lazy"/>
-		</a>
+        <a href="{{ '/' | relative_url }}">
+            <img
+                alt="logo img"
+                class="avatar"
+                src="{{ site.avatar | relative_url }}"
+                loading="lazy"
+            />
+        </a>
         {% endif %}
-        <a class="site-title" aria-label="{{ site.title }}" href="{{ '/' | relative_url }}">
-        {{ site.title }}
-		</a>
-	</div>
+
+        <a
+            class="site-title"
+            aria-label="{{ site.title }}"
+            href="{{ '/' | relative_url }}"
+        >
+            {{ site.title }}
+        </a>
+    </div>
+
 
     <!-- Toggle menu -->
     <nav class="clear">
-    <a aria-label="pull" id="pull" class="toggle" href="#">
-    <i class="fas fa-bars fa-lg"></i>
-    </a>
 
-    <!-- Menu -->
-    <ul class="hide">
-        {% assign name_page = "" %}
-        {% assign emptyArray = '' | split: '' %}
-        {% assign menus = site.data.menu | default: emptyArray %}
-        {% assign pages = site.pages | concat: menus | sort: 'position' %}
-        {% for page in pages %}
-        {% unless page.title == null or page.hide or name_page contains page.title %}
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" aria-label="{{ page.title }}" title="{{ page.title }}" href="{{ page.url | relative_url }}">
-                    {% if page.icon %} <i class="navbar-icon fas {{ page.icon }}" aria-hidden="true"></i>{% endif %}
-                    <span class="navbar-label {% if page.icon %}navbar-label-with-icon{% endif %}">{{ page.title }}</span>
-                </a>
-            </li>
-        {% endunless %}
-        {% assign name_page = page.title | append: name_page %}
-        {% endfor %}
+        <a
+            aria-label="pull"
+            id="pull"
+            class="toggle"
+            href="#"
+        >
+            <i class="fas fa-bars fa-lg"></i>
+        </a>
 
-        {% if site.color_theme == 'auto' %}
-        <li class="separator"> | </li>
-        <li><a id="theme-toggle" title="{{ site.data.language.str_dark | default: 'Toggle theme' }}" aria-label="{{ site.data.language.str_dark | default: 'Toggle theme' }}" onclick="themeToggle()"></a></li>
-        {% endif %}
-    </ul>
 
-	</nav>
+        <!-- Menu -->
+        <ul class="hide">
+
+            {% assign name_page = "" %}
+            {% assign emptyArray = '' | split: '' %}
+            {% assign menus = site.data.menu | default: emptyArray %}
+            {% assign pages = site.pages | concat: menus | sort: 'position' %}
+
+
+            {% for page in pages %}
+
+                {% unless page.title == null or page.hide or name_page contains page.title %}
+
+
+                    <!-- =================================================
+                         INTRANET
+                         Insert immediately before Search
+                         ================================================= -->
+
+                    {% if page.title == "Search" %}
+
+                        <li class="separator"> | </li>
+
+                        <li class="intranet-menu">
+
+                            <button
+                                type="button"
+                                class="intranet-toggle"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                aria-controls="intranet-dropdown"
+                            >
+
+                                <span class="navbar-label">
+                                    INTRANET
+                                </span>
+
+                                <i
+                                    class="fas fa-chevron-down intranet-arrow"
+                                    aria-hidden="true"
+                                ></i>
+
+                            </button>
+
+
+                            <ul
+                                id="intranet-dropdown"
+                                class="intranet-dropdown"
+                            >
+
+                                <li>
+                                    <a
+                                        href="https://docs.google.com/spreadsheets/d/1CsVMuiIA5jdS37Py53pWE7J0T0nvoE99MxByKxm58w4/edit?usp=sharing"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Requisition Whiteboard
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="https://docs.google.com/spreadsheets/d/1t829DIu9cYdJV-xfiVqh8QttNTcY1_H-HUgmnXj5sYA/edit?usp=sharing"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Plasmid Inventory
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         Normal menu item
+                         ================================================= -->
+
+                    <li class="separator"> | </li>
+
+                    <li>
+
+                        <a
+                            class="clear"
+                            aria-label="{{ page.title }}"
+                            title="{{ page.title }}"
+                            href="{{ page.url | relative_url }}"
+                        >
+
+                            {% if page.icon %}
+
+                                <i
+                                    class="navbar-icon fas {{ page.icon }}"
+                                    aria-hidden="true"
+                                ></i>
+
+                            {% endif %}
+
+                            <span
+                                class="navbar-label {% if page.icon %}navbar-label-with-icon{% endif %}"
+                            >
+                                {{ page.title }}
+                            </span>
+
+                        </a>
+
+                    </li>
+
+
+                {% endunless %}
+
+
+                {% assign name_page = page.title | append: name_page %}
+
+            {% endfor %}
+
+
+            <!-- Theme toggle -->
+
+            {% if site.color_theme == 'auto' %}
+
+                <li class="separator"> | </li>
+
+                <li>
+
+                    <a
+                        id="theme-toggle"
+                        title="{{ site.data.language.str_dark | default: 'Toggle theme' }}"
+                        aria-label="{{ site.data.language.str_dark | default: 'Toggle theme' }}"
+                        onclick="themeToggle()"
+                    ></a>
+
+                </li>
+
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
 </header>
+
+
+
+<!-- =============================================================
+     INTRANET BEHAVIOR
+     ============================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const intranetMenu =
+        document.querySelector(".intranet-menu");
+
+    const intranetToggle =
+        document.querySelector(".intranet-toggle");
+
+
+    if (!intranetMenu || !intranetToggle) {
+        return;
+    }
+
+
+    /* =========================================================
+       OPEN
+       ========================================================= */
+
+    function openIntranet() {
+
+        intranetMenu.classList.add("intranet-open");
+
+        intranetToggle.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+
+
+    /* =========================================================
+       CLOSE
+       ========================================================= */
+
+    function closeIntranet() {
+
+        intranetMenu.classList.remove("intranet-open");
+
+        intranetToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+
+
+    /* =========================================================
+       HOVER IN
+       ========================================================= */
+
+    intranetMenu.addEventListener(
+        "mouseenter",
+        function () {
+
+            openIntranet();
+
+        }
+    );
+
+
+    /* =========================================================
+       HOVER OUT
+       ========================================================= */
+
+    let intranetCloseTimer;
+
+intranetMenu.addEventListener(
+    "mouseleave",
+    function () {
+
+        intranetCloseTimer = setTimeout(
+            function () {
+                closeIntranet();
+            },
+            500
+        );
+
+    }
+);
+
+
+intranetMenu.addEventListener(
+    "mouseenter",
+    function () {
+
+        clearTimeout(intranetCloseTimer);
+
+        openIntranet();
+
+    }
+);
+
+
+    /* =========================================================
+       CLICK TOGGLE
+       ========================================================= */
+
+    intranetToggle.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            if (
+                intranetMenu.classList.contains(
+                    "intranet-open"
+                )
+            ) {
+
+                closeIntranet();
+
+            } else {
+
+                openIntranet();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       CLICK OUTSIDE
+       ========================================================= */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                !intranetMenu.contains(event.target)
+            ) {
+
+                closeIntranet();
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       ESCAPE KEY
+       ========================================================= */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Escape") {
+
+                closeIntranet();
+
+            }
+
+        }
+    );
+
+});
+
+</script>

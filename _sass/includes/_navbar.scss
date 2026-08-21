@@ -11,6 +11,7 @@
   }
 }
 
+
 .site-header {
   padding: 2% 2% 1% 2%;
   background: var(--background);
@@ -39,7 +40,6 @@
     border-radius: 0.2em;
     margin-right: 0.5em;
     padding: 10px 10px;
-
   }
 
   .site-title {
@@ -49,6 +49,7 @@
     font-size: 1.3em;
   }
 }
+
 
 nav {
   list-style: none;
@@ -72,23 +73,208 @@ nav {
   }
 
   a {
+
     &:hover {
       color: var(--link);
     }
 
     &#pull {
+
       i {
         margin-top: 22px;
         margin-right: 18px;
         float: right;
       }
+
     }
+
   }
 }
 
-/* ---- Responsive ---- */
+
+
+/* ============================================================
+   INTRANET
+   ============================================================ */
+
+.intranet-menu {
+  position: relative;
+}
+
+
+/* INTRANET button */
+
+.intranet-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+
+  border: none;
+  background: transparent;
+
+  padding: 0;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  color: var(--header-link);
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+
+  text-decoration: none;
+}
+
+
+.intranet-toggle:hover {
+  color: var(--link);
+}
+
+
+/* Arrow */
+
+.intranet-arrow {
+  font-size: 0.65em;
+
+  margin-left: 5px;
+
+  transition:
+    transform $transition-base ease;
+}
+
+
+/* Rotate arrow when open */
+
+.intranet-open .intranet-arrow {
+  transform: rotate(180deg);
+}
+
+
+
+/* ============================================================
+   DROPDOWN
+   ============================================================ */
+
+.intranet-dropdown {
+
+  position: absolute;
+
+  top: calc(100% + 10px);
+
+  right: 0;
+
+  min-width: 210px;
+
+  margin: 0;
+
+  padding: 8px 0;
+
+  list-style: none;
+
+  background: var(--background);
+
+  border-radius: 4px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15);
+
+  z-index: 1000;
+
+
+  /* Hidden */
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: translateY(-5px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    visibility 0.15s ease;
+}
+
+
+
+/* Open */
+
+.intranet-open > .intranet-dropdown {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  transform: translateY(0);
+
+  pointer-events: auto;
+}
+
+
+
+/* Dropdown items */
+
+.intranet-dropdown li {
+
+  display: block;
+
+  float: none;
+
+  width: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  text-align: left;
+}
+
+
+
+/* Dropdown links */
+
+.intranet-dropdown li a {
+
+  display: block;
+
+  width: 100%;
+
+  padding: 9px 16px;
+
+  box-sizing: border-box;
+
+  white-space: nowrap;
+
+  color: var(--header-link);
+
+  text-decoration: none;
+}
+
+
+
+/* Dropdown hover */
+
+.intranet-dropdown li a:hover {
+
+  color: var(--link);
+
+  background-color:
+    rgba(128, 128, 128, 0.08);
+}
+
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 
 @media (min-width: $break + 1) {
+
   a#pull {
     display: none;
   }
@@ -96,55 +282,205 @@ nav {
   .navbar-label-with-icon {
     display: none;
   }
+
 }
 
+
+
 @media screen and (max-width: $break) {
+
   .site-header {
+
     img.avatar {
-      margin-top: -7px
+      margin-top: -7px;
     }
 
     .site-title {
       margin-top: 7px;
     }
+
   }
 
+
   nav {
+
     height: auto;
+
 
     .separator {
       display: none !important;
     }
 
+
     ul {
+
       width: 100%;
+
       overflow: hidden;
 
-      /* fade out, then shrink */
-      transition: opacity $transition-base 0s, font-size $transition-base 0s;
+      transition:
+        opacity $transition-base 0s,
+        font-size $transition-base 0s;
+
       transition-delay: 0s;
 
+
       &.hide {
+
         font-size: 0;
+
         margin: 0;
+
         opacity: 0;
+
         padding: 0;
+
       }
+
     }
+
 
     li {
+
       width: 100%;
+
       text-align: center;
+
       font-size: 1em;
+
       margin: 0;
+
       background-color: var(--background);
+
       backdrop-filter: brightness(0.98);
 
+
       a {
+
         width: 100%;
+
         display: block;
+
       }
 
     }
+
+
+
+    /* ========================================================
+       MOBILE INTRANET
+       ======================================================== */
+
+    .intranet-menu {
+
+      width: 100%;
+
+      display: block;
+
+      position: relative;
+
+      text-align: center;
+    }
+
+
+    .intranet-toggle {
+
+      width: 100%;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 10px 0;
+
+      box-sizing: border-box;
+
+      text-align: center;
+    }
+
+
+    .intranet-dropdown {
+
+      position: static;
+
+      width: 100%;
+
+      min-width: 0;
+
+      margin: 0;
+
+      padding: 0;
+
+      border-radius: 0;
+
+      box-shadow: none;
+
+      background-color:
+        rgba(128, 128, 128, 0.05);
+
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform: none;
+
+      pointer-events: none;
+
+      max-height: 0;
+
+      overflow: hidden;
+
+      transition:
+        opacity 0.2s ease,
+        max-height 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .intranet-open > .intranet-dropdown {
+
+      opacity: 1;
+
+      visibility: visible;
+
+      pointer-events: auto;
+
+      max-height: 150px;
+
+      transform: none;
+    }
+
+
+    .intranet-dropdown li {
+
+      width: 100%;
+
+      display: block;
+
+      float: none;
+
+      margin: 0;
+
+      padding: 0;
+    }
+
+
+    .intranet-dropdown li a {
+
+      width: 100%;
+
+      display: block;
+
+      padding: 10px 0;
+
+      text-align: center;
+
+      white-space: normal;
+    }
+
   }
+
 }
