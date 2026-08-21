@@ -1,4 +1,5 @@
 {% assign images = include.images | split: ',' %}
+{% assign dark_images = include.dark_images | split: ',' %}
 
 {% if include.column == "auto" %}
 {% assign column = 100.0 | divided_by: images.size %}
@@ -8,16 +9,42 @@
 
 
 <figure class="row">
+
     {% for image in images %}
+
     <div class="column">
-        <img {% if images.size== 1 %}class="single" {% endif %}
-             src="{{ image | prepend: 'assets/img/' | relative_url }}"
-             alt="{{ image | prepend: '/' | split: '/' | last }}">
+
+        <!-- Light theme image -->
+        <img
+            class="theme-image theme-image-light{% if images.size == 1 %} single{% endif %}"
+            src="{{ image | prepend: 'assets/img/' | relative_url }}"
+            alt="{{ image | prepend: '/' | split: '/' | last }}"
+        >
+
+        <!-- Dark theme image -->
+        {% assign dark_image = dark_images[forloop.index0] %}
+
+        {% if dark_image and dark_image != "" %}
+
+        <img
+            class="theme-image theme-image-dark{% if images.size == 1 %} single{% endif %}"
+            src="{{ dark_image | prepend: 'assets/img/' | relative_url }}"
+            alt="{{ dark_image | prepend: '/' | split: '/' | last }}"
+        >
+
+        {% endif %}
+
     </div>
+
     {% endfor %}
+
     {% if include.caption %}
     {% endif %}
-    <figcaption class="caption-style">{{ include.caption }}</figcaption>
+
+    <figcaption class="caption-style">
+        {{ include.caption }}
+    </figcaption>
+
 </figure>
 
 

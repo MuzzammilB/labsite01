@@ -27,5 +27,5 @@ Our lab was established in November 2024, and since then we have been working on
 We are grateful for the generous support from various funding bodies, including the generous intramural support from NCCS.
 
 
-{% include aligner.html images="funding/anrf.png,funding/dbt.png,funding/nccs.png" column=3 %}
+{% include aligner.html images="funding/anrf-nobg-light.png,funding/dbt-nobg-light.png,funding/nccs-nobg-light.png" dark_images="funding/anrf-nobg-dark.png,funding/dbt-nobg-dark.png,funding/nccs-nobg-dark.png" column=3 %}
 

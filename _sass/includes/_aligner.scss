@@ -33,3 +33,17 @@
     display: block;
   }
 }
+
+/* Theme-dependent images */
+
+.theme-image-dark {
+    display: none;
+}
+
+[data-theme="dark"] .theme-image-light {
+    display: none;
+}
+
+[data-theme="dark"] .theme-image-dark {
+    display: block;
+}
