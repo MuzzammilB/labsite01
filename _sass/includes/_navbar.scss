@@ -92,7 +92,6 @@ nav {
 }
 
 
-
 /* ============================================================
    INTRANET
    ============================================================ */
@@ -184,7 +183,16 @@ nav {
   z-index: 1000;
 
 
-  /* Hidden */
+  /*
+   * IMPORTANT:
+   * Completely remove the dropdown from the navbar
+   * when it is closed.
+   *
+   * This prevents the nested links from being interpreted
+   * as normal navbar items by the GitHub Pages build.
+   */
+
+  display: none;
 
   opacity: 0;
 
@@ -205,6 +213,8 @@ nav {
 /* Open */
 
 .intranet-open > .intranet-dropdown {
+
+  display: block;
 
   opacity: 1;
 
@@ -421,6 +431,13 @@ nav {
         rgba(128, 128, 128, 0.05);
 
 
+      /*
+       * Keep the mobile dropdown completely removed
+       * from the navbar while closed.
+       */
+
+      display: none;
+
       opacity: 0;
 
       visibility: hidden;
@@ -441,6 +458,8 @@ nav {
 
 
     .intranet-open > .intranet-dropdown {
+
+      display: block;
 
       opacity: 1;
 
